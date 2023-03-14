@@ -1,13 +1,13 @@
-var adultKeywords = ["adult", "porn", "xxx", "sex"];
+(function() {
+  // array of adult keywords
+  const adultKeywords = ["adult", "porn", "sex", "xxx", "nsfw"];
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (changeInfo.url) {
-    var url = changeInfo.url.toLowerCase();
-    var containsAdult = adultKeywords.some(function(keyword) {
-      return url.includes(keyword);
-    });
-    if (containsAdult) {
-      chrome.runtime.sendMessage({action: "alert"});
+  // listen for page load
+  window.addEventListener("load", function() {
+    // check if the current URL contains an adult keyword
+    if (adultKeywords.some(keyword => window.location.href.includes(keyword))) {
+      // send a message to the background script to show the alert
+      chrome.runtime.sendMessage({type: "showAlert"});
     }
-  }
-});
+  });
+})();
