@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Adult Website Alert",
+    "version": "1.0",
+    "description": "Alerts you when you try to access an adult website",
+    "permissions": ["tabs", "notifications"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  
