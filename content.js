@@ -7,7 +7,7 @@
     // check if the current URL contains an adult keyword
     if (adultKeywords.some(keyword => window.location.href.includes(keyword))) {
       // send a message to the background script to show the alert
-      chrome.runtime.sendMessage({type: "showAlert"});
+      chrome.runtime.sendMessage({action: "alert"});
     }
   });
 })();
